@@ -1,0 +1,183 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  min-width: 327px;
+  width: 90%;
+}
+
+input {
+  margin: 0;
+}
+
+.App {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+}
+
+/***************
+LAYOUT
+***************/
+
+header {
+  background: url(/src/images/bg-mobile-light.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 48px;
+  padding-bottom: 132px;
+  grid-row: 1/2;
+  grid-column: 1/2;
+  height: min-content;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+header h1 {
+  margin: 0;
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: 10px;
+}
+
+.sun-toggle-icon {
+  display: none;
+}
+
+.todo-input {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  height: min-content;
+  margin-top: 108px;
+  z-index: 1000;
+  background: #ffffff;
+  display: flex;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-radius: 5px;
+}
+
+.todo-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px #e3e4f1 solid;
+  border-radius: 20px;
+  margin-left: 20px;
+}
+
+.todo-checkbox::check {
+  background: red;
+}
+
+.todo-input-text {
+  margin-left: 12px;
+  font-size: 12px;
+  border: none;
+  color: #9495a5;
+  font-family: "Josefin Sans", sans-serif;
+  width: 90%;
+}
+
+.todo-input-text:focus {
+  outline: none;
+}
+
+.todo-item {
+  border-bottom: 1px solid #e3e4f1;
+
+  display: flex;
+  align-items: center;
+  z-index: 10000;
+  height: min-content;
+  border-radius: 5px 5px 0 0;
+}
+
+.todo-item .todo-checkbox {
+  margin-right: 12px;
+}
+
+.todo-remove-btn {
+  cursor: pointer;
+}
+
+.todo-text {
+  font-size: 12px;
+  color: #494c6b;
+  width: 75%;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.todo-list {
+  background: #ffffff;
+  grid-row: 1/2;
+  grid-column: 1/2;
+  margin-top: 172px;
+  border-radius: 5px;
+  box-shadow: 10px 5px 50px -15px #c2c3d6, -10px -5px 50px -15px #c2c3d6;
+}
+
+.todo-list-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 15px;
+}
+
+.todo-items-count {
+  font-size: 12px;
+  color: #9495a5;
+}
+
+.clear-completed-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 12px;
+  color: #9495a5;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.clear-completed-btn:hover {
+  color: #494c6b;
+  cursor: pointer;
+}
+
+.clear-completed-btn:focus {
+  color: #494c6b;
+}
+
+.todo-filter {
+  margin-top: 16px;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 19px;
+  box-shadow: 10px 5px 50px -15px #c2c3d6, -10px -5px 50px -15px #c2c3d6;
+}
+
+.filter-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  margin-right: 18px;
+  font-size: 14px;
+  color: #9495a5;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.filter-btn:hover {
+  color: #494c6b;
+  cursor: pointer;
+}
+
+.filter-btn:focus {
+  color: #494c6b;
+}
