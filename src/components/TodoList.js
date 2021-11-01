@@ -1,5 +1,7 @@
 
+import TodoFilter from './TodoFilter';
 import TodoItem from './TodoItem';
+
 
 
 const TodoList = ({
@@ -7,9 +9,13 @@ const TodoList = ({
   deleteTodoItem,
   toggleCheck,
   filterState,
+  filterChange,
   count,
-  clearCompleted
+  clearCompleted,
+  onMobile,
+  theme
 }) => {
+
 
   const handleClearCompleted = () => {
     clearCompleted()
@@ -24,6 +30,7 @@ const TodoList = ({
             key={todoItem.id}
             deleteTodoItem={deleteTodoItem}
             toggleCheck={toggleCheck}
+            theme={theme}
           
           />
         );
@@ -36,9 +43,8 @@ const TodoList = ({
               todoItem={todoItem}
               key={todoItem.id}
               deleteTodoItem={deleteTodoItem}
-              
+              theme={theme}
               toggleCheck={toggleCheck}
-              
             />
           );
         }
@@ -52,9 +58,8 @@ const TodoList = ({
               todoItem={todoItem}
               key={todoItem.id}
               deleteTodoItem={deleteTodoItem}
-              
               toggleCheck={toggleCheck}
-             
+              theme={theme}
             />
           );
         }
@@ -64,11 +69,34 @@ const TodoList = ({
   };
 
   return (
-    <div className="todo-list container">
+    <div
+      className="todo-list container"
+      style={theme === "dark" ? { boxShadow: "none" } : {}}
+    >
       {renderList(filterState)}
-      <div className="todo-list-footer">
-        <p className="todo-items-count">{count} items left</p>
-        <button className="clear-completed-btn" onClick={handleClearCompleted}>
+      <div
+        className="todo-list-footer"
+        style={theme === "dark" ? { background: "#25273D" } : {}}
+      >
+        <p
+          className="todo-items-count"
+          style={theme === "dark" ? { color: "#5B5E7E" } : {}}
+        >
+          {count} items left
+        </p>
+        {!onMobile && (
+          <TodoFilter
+            filterChange={filterChange}
+            filterState={filterState}
+            onMobile={onMobile}
+            theme={theme}
+          />
+        )}
+        <button
+          className="clear-completed-btn"
+          style={theme === "dark" ? { color: "#5B5E7E" } : {}}
+          onClick={handleClearCompleted}
+        >
           Clear Completed
         </button>
       </div>

@@ -4,7 +4,7 @@ import { generateID } from '../utlities';
 
 const IDsDischarged = [];
 
-const TodoInput = ({addTodoItem, todoList}) => {
+const TodoInput = ({addTodoItem, theme}) => {
     const [input, setInput] = useState('');
     
 
@@ -22,12 +22,24 @@ const TodoInput = ({addTodoItem, todoList}) => {
     }
 
     
-
     return (
-        <div className="todo-input container">
-            <input type="text" value ={input} onChange = {e => setInput(e.target.value)} onKeyPress={handleEnterPress} className="todo-input-text" placeholder="Write your todo then press Enter..."></input>
-        </div>
-    )
+      <div
+        className="todo-input container"
+        style={theme === "dark" ? { background: "#25273D" } : {}}
+      >
+        <input
+          className="todo-input-text"
+          type="text"
+          style={
+            theme === "dark" ? { background: "#25273D", color: "#767992" } : {}
+          }
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyPress={handleEnterPress}
+          placeholder="Write your todo then press Enter..."
+        ></input>
+      </div>
+    );
 }
 
 export default TodoInput

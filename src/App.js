@@ -10,6 +10,12 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [filterState, setFilterState] = useState('all');
   const [todoCount, setTodoCount] = useState(0);
+  const [theme, setTheme] = useState('light');
+  const [onMobile, setOnMobile] = useState(
+    window.innerWidth > 768 ? false : true
+  );
+
+  
 
   const addTodoItem = (id, todoText, isDone) => {
     const newTodoItem = {
@@ -75,24 +81,59 @@ function App() {
    setTodoList(newTodoList);
   }
 
+  const handleResizing = () => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) {
+        setOnMobile(false);
+      } else {
+        setOnMobile(true);
+      }
+    });
+  };
+
+  const changeTheme = () => {
+    console.log("Change Theme");
+    setTheme((prev) => {
+      if(prev === 'dark') return 'light';
+      else return 'dark';
+    })
+  }
+
   useEffect(() => {
     itemCount(filterState)
   }, [filterState, todoCount, todoList])
 
+  
+  useEffect(() => {
+    handleResizing();
+  }, []);
 
   return (
-    <div className="App">
-      <Header />
-      <TodoInput addTodoItem={addTodoItem} todoList={todoList} />
+    <div
+      className="App"
+      style={theme === "dark" ? { background: "#171823" } : {}}
+    >
+      <Header theme={theme} changeTheme={changeTheme} />
+      <TodoInput addTodoItem={addTodoItem} todoList={todoList} theme={theme} />
       <TodoList
         todoList={todoList}
         count={todoCount}
         deleteTodoItem={deleteTodoItem}
         toggleCheck={toggleCheck}
         filterState={filterState}
+        filterChange={filterChange}
         clearCompleted={clearCompleted}
+        onMobile={onMobile}
+        theme={theme}
       />
-      <TodoFilter filterChange={filterChange} filterState={filterState} />
+      {onMobile && (
+        <TodoFilter
+          filterChange={filterChange}
+          filterState={filterState}
+          onMobile={onMobile}
+          theme={theme}
+        />
+      )}
     </div>
   );
 }
